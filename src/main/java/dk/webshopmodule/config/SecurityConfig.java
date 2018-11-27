@@ -3,7 +3,6 @@ package dk.webshopmodule.config;
 import dk.webshopmodule.web.LoggingAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -67,7 +66,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authoritiesByUsernameQuery("SELECT username, role FROM users INNER JOIN roles ON users.role_fk = roles.r_id WHERE username=?")
                 .usersByUsernameQuery("SELECT username,password as password,1 FROM users WHERE username=?")
                 .passwordEncoder(passEncoder());
-
     }
 
     @Bean
