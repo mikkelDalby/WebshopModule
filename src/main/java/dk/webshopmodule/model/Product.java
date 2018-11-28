@@ -112,10 +112,7 @@ public class Product {
 
     @Override
     public String toString() {
-        String s = "";
-        for (Category i: categories){
-            s += i.toString();
-        }
+
         return "Product{" +
                 "p_id='" + p_id + '\'' +
                 ", name='" + name + '\'' +
@@ -125,7 +122,6 @@ public class Product {
                 ", barcode='" + barcode + '\'' +
                 ", description='" + description + '\'' +
                 ", image_path='" + image_path + '\'' +
-                ", categories='" + s +
                 '}';
     }
 }

@@ -17,9 +17,6 @@ public class HomeController {
     @GetMapping("/")
     public String index(){
         List<Product> products = productService.getAllProducts();
-        for (Product i: products){
-            System.out.println(i.toString());
-        }
         return "webshop/index";
     }
 }
