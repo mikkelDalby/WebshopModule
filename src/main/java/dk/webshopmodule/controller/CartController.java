@@ -3,7 +3,6 @@ package dk.webshopmodule.controller;
 import dk.webshopmodule.model.OrderLine;
 import dk.webshopmodule.model.Product;
 import dk.webshopmodule.service.IProductService;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +25,7 @@ public class CartController {
 
     public Product findProduct(String id){
         for (Product p: this.products){
-            if (p.getP_id().equalsIgnoreCase(id)) {
+            if (p.getId().equalsIgnoreCase(id)) {
                 return p;
             }
         }
@@ -52,7 +51,7 @@ public class CartController {
                 List<OrderLine> cart = (List<OrderLine>) session.getAttribute("cart");
                 int index = -1;
                 for (int i = 0; i < cart.size(); i++){
-                    if (cart.get(i).getProduct().getP_id().equalsIgnoreCase(id)){
+                    if (cart.get(i).getProduct().getId().equalsIgnoreCase(id)){
                         index = i;
                         break;
                     }
@@ -80,7 +79,7 @@ public class CartController {
 
     private int exists(String id, List<OrderLine> cart) {
         for (int i = 0; i < cart.size(); i++) {
-            if (cart.get(i).getProduct().getP_id().equalsIgnoreCase(id)) {
+            if (cart.get(i).getProduct().getId().equalsIgnoreCase(id)) {
                 return i;
             }
         }

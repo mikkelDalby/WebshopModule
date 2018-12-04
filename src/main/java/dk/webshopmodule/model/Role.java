@@ -1,16 +1,15 @@
 package dk.webshopmodule.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "roles")
 public class Role {
     @Id
-    private int r_id;
+    @Column(name = "r_id")
+    private int id;
+    @Column(name = "role")
     private String role;
 
     @OneToMany(mappedBy = "role")
@@ -19,18 +18,18 @@ public class Role {
     public Role() {
     }
 
-    public Role(int r_id, String role, List<User> users) {
-        this.r_id = r_id;
+    public Role(int id, String role, List<User> users) {
+        this.id = id;
         this.role = role;
         this.users = users;
     }
 
-    public int getR_id() {
-        return r_id;
+    public int getId() {
+        return id;
     }
 
-    public void setR_id(int r_id) {
-        this.r_id = r_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getRole() {
