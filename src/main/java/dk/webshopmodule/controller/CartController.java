@@ -25,7 +25,7 @@ public class CartController {
 
     public Product findProduct(String id){
         for (Product p: this.products){
-            if (p.getP_id().equalsIgnoreCase(id)) {
+            if (p.getId().equalsIgnoreCase(id)) {
                 return p;
             }
         }
@@ -51,7 +51,7 @@ public class CartController {
                 List<OrderLine> cart = (List<OrderLine>) session.getAttribute("cart");
                 int index = -1;
                 for (int i = 0; i < cart.size(); i++){
-                    if (cart.get(i).getProduct().getP_id().equalsIgnoreCase(id)){
+                    if (cart.get(i).getProduct().getId().equalsIgnoreCase(id)){
                         index = i;
                         break;
                     }
@@ -79,7 +79,7 @@ public class CartController {
 
     private int exists(String id, List<OrderLine> cart) {
         for (int i = 0; i < cart.size(); i++) {
-            if (cart.get(i).getProduct().getP_id().equalsIgnoreCase(id)) {
+            if (cart.get(i).getProduct().getId().equalsIgnoreCase(id)) {
                 return i;
             }
         }

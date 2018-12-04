@@ -12,7 +12,7 @@
     </tr>
     <tr th:each="product : ${products}">
         <td th:text="${product.name}"></td>
-        <td><a th:href="${'/cart/buy/'+product.p_id}">Buy</a></td>
+        <td><a th:href="${'/cart/buy/'+product.id}">Buy</a></td>
     </tr>
 </table>
 <table cellpadding="2" cellspacing="2" border="1">
@@ -27,9 +27,9 @@
     </tr>
         <tr th:each="item :${session.cart}">
             <td align="center"><a
-                    th:href="${'/cart/remove/' + item.product.p_id}"
+                    th:href="${'/cart/remove/' + item.product.id}"
                     onclick="return confirm('Are you sure?')">Remove</a></td>
-            <td th:text="${item.product.p_id}"></td>
+            <td th:text="${item.product.id}"></td>
             <td th:text="${item.quantity}"></td>
         </tr>
     <tr>

@@ -1,16 +1,15 @@
 package dk.webshopmodule.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "categories")
 public class Category {
     @Id
-    private int c_id;
+    @Column(name = "c_id")
+    private int id;
+    @Column(name = "name")
     private String name;
 
     @ManyToMany(mappedBy = "categories")
@@ -19,18 +18,18 @@ public class Category {
     public Category() {
     }
 
-    public Category(int c_id, String name, List<Product> products) {
-        this.c_id = c_id;
+    public Category(int id, String name, List<Product> products) {
+        this.id = id;
         this.name = name;
         this.products = products;
     }
 
-    public int getC_id() {
-        return c_id;
+    public int getId() {
+        return id;
     }
 
-    public void setC_id(int c_id) {
-        this.c_id = c_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -52,7 +51,7 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "c_id=" + c_id +
+                "id=" + id +
                 ", name='" + name +
                 '}';
     }

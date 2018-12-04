@@ -6,8 +6,11 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
     @Id
-    private int u_id;
+    @Column(name = "u_id")
+    private int id;
+    @Column(name = "username")
     private String username;
+    @Column(name = "password")
     private String password;
 
     @ManyToOne
@@ -17,19 +20,19 @@ public class User {
     public User() {
     }
 
-    public User(int u_id, String username, String password, Role role) {
-        this.u_id = u_id;
+    public User(int id, String username, String password, Role role) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
-    public int getU_id() {
-        return u_id;
+    public int getId() {
+        return id;
     }
 
-    public void setU_id(int u_id) {
-        this.u_id = u_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {

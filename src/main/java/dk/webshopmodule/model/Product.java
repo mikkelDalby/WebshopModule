@@ -7,14 +7,22 @@ import java.util.List;
 @Table(name = "products")
 public class Product {
     @Id
-    private String p_id;
+    @Column(name = "p_id")
+    private String id;
+    @Column(name = "name")
     private String name;
-    private Double purchase_price;
-    private Double sales_price;
+    @Column(name = "purchase_price")
+    private Double purchasePrice;
+    @Column(name = "sales_price")
+    private Double salesPrice;
+    @Column(name = "quantity")
     private int quantity;
+    @Column(name = "barcode")
     private String barcode;
+    @Column(name = "desription")
     private String description;
-    private String image_path;
+    @Column(name = "image_path")
+    private String imagePath;
 
     @ManyToMany
     @JoinTable(
@@ -26,24 +34,24 @@ public class Product {
     public Product() {
     }
 
-    public Product(String p_id, String name, Double purchase_price, Double sales_price, int quantity, String barcode, String description, String image_path, List<Category> categories) {
-        this.p_id = p_id;
+    public Product(String id, String name, Double purchasePrice, Double salesPrice, int quantity, String barcode, String description, String imagePath, List<Category> categories) {
+        this.id = id;
         this.name = name;
-        this.purchase_price = purchase_price;
-        this.sales_price = sales_price;
+        this.purchasePrice = purchasePrice;
+        this.salesPrice = salesPrice;
         this.quantity = quantity;
         this.barcode = barcode;
         this.description = description;
-        this.image_path = image_path;
+        this.imagePath = imagePath;
         this.categories = categories;
     }
 
-    public String getP_id() {
-        return p_id;
+    public String getId() {
+        return id;
     }
 
-    public void setP_id(String p_id) {
-        this.p_id = p_id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -54,20 +62,20 @@ public class Product {
         this.name = name;
     }
 
-    public Double getPurchase_price() {
-        return purchase_price;
+    public Double getPurchasePrice() {
+        return purchasePrice;
     }
 
-    public void setPurchase_price(Double purchase_price) {
-        this.purchase_price = purchase_price;
+    public void setPurchasePrice(Double purchasePrice) {
+        this.purchasePrice = purchasePrice;
     }
 
-    public Double getSales_price() {
-        return sales_price;
+    public Double getSalesPrice() {
+        return salesPrice;
     }
 
-    public void setSales_price(Double sales_price) {
-        this.sales_price = sales_price;
+    public void setSalesPrice(Double salesPrice) {
+        this.salesPrice = salesPrice;
     }
 
     public int getQuantity() {
@@ -94,12 +102,12 @@ public class Product {
         this.description = description;
     }
 
-    public String getImage_path() {
-        return image_path;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImage_path(String image_path) {
-        this.image_path = image_path;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public List<Category> getCategories() {
@@ -114,14 +122,14 @@ public class Product {
     public String toString() {
 
         return "Product{" +
-                "p_id='" + p_id + '\'' +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", purchase_price=" + purchase_price +
-                ", sales_price=" + sales_price +
+                ", purchasePrice=" + purchasePrice +
+                ", salesPrice=" + salesPrice +
                 ", quantity=" + quantity +
                 ", barcode='" + barcode + '\'' +
                 ", description='" + description + '\'' +
-                ", image_path='" + image_path + '\'' +
+                ", imagePath='" + imagePath + '\'' +
                 '}';
     }
 }
