@@ -5,8 +5,10 @@
     <title>Se alle Produkter</title>
 </head>
 <body>
+<div th:replace="fragments/adminheader :: adminheader"></div>
 <input type="text" id="myInput" onkeyup="myFunction()"
        placeholder="Search for product.." title="Type in a name">
+<a href="/admin/createProduct">Create product</a>
 <table id="myTable">
     <thead>
     <tr>

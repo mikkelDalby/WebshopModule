@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -59,7 +58,4 @@ public class AdminController {
 
         return "redirect:/admin";
     }
-
-
-
 }

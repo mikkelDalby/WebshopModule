@@ -5,6 +5,7 @@
     <title>Se alle produkter</title>
 </head>
 <body>
+<div th:replace="fragments/header :: header"></div>
 <input type="text" id="myInput" onkeyup="myFunction()"
        placeholder="Search for product.." title="Type in a name">
 <table id="myTable">
@@ -24,6 +25,7 @@
         <td th:text="${product.description}"></td>
         <td th:text="${product.quantity}"></td>
         <td><img th:src="${product.imagePath}" height="60"></td>
+        <td><a th:href="${'/cart/add/' + product.id}">Køb</a></td>
     </tr>
     </tbody>
 </table>

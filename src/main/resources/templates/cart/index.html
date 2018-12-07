@@ -5,36 +5,36 @@
     <title>Cart index</title>
 </head>
 <body>
+<div th:replace="fragments/header :: header"></div>
 <h3>Cart Page</h3>
-<table>
+<table cellpadding="2" cellspacing="2">
     <tr>
-        <th>Name</th>
-    </tr>
-    <tr th:each="product : ${products}">
-        <td th:text="${product.name}"></td>
-        <td><a th:href="${'/cart/buy/'+product.id}">Buy</a></td>
-    </tr>
-</table>
-<table cellpadding="2" cellspacing="2" border="1">
-    <tr>
-        <th>Option</th>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Photo</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Sub Total</th>
+        <th>Produkt</th>
+        <th>Antal</th>
+        <th>Pris/stk.</th>
+        <th>Total</th>
+
     </tr>
         <tr th:each="item :${session.cart}">
-            <td align="center"><a
-                    th:href="${'/cart/remove/' + item.product.id}"
-                    onclick="return confirm('Are you sure?')">Remove</a></td>
-            <td th:text="${item.product.id}"></td>
-            <td th:text="${item.quantity}"></td>
+            <td th:text="${item.product.name}"></td>
+            <td>
+                <a th:href="${'/cart/sub/' + item.product.id}">-</a>
+                <span th:text="${item.quantity}"></span>
+                <a th:href="${'/cart/add/' + item.product.id}">+</a>
+            </td>
+            <td th:text="${item.product.salesPrice}"></td>
+            <td th:text="${item.product.salesPrice * item.quantity}"></td>
+            <td align="center">
+                <a th:href="${'/cart/remove/' + item.product.id}"
+                    onclick="return confirm('Are you sure?')">Remove</a>
+            </td>
         </tr>
     <tr>
-        <td colspan="6" align="right">Sum</td>
         <td></td>
+        <td></td>
+        <td>Total</td>
+        <td th:if="${total}" th:text="${total}"></td>
+        <td th:if="!${total}"></td>
     </tr>
 </table>
 </body>
