@@ -3,6 +3,7 @@ package dk.webshopmodule.config;
 import dk.webshopmodule.web.LoggingAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -22,8 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
-        //web.ignoring().antMatchers(HttpMethod.POST, "/home/update");
-        //web.ignoring().antMatchers(HttpMethod.POST, "/home/create");
+        web.ignoring().antMatchers( "/admin/updateProduct");
+        web.ignoring().antMatchers( "/admin/createProduct");
     }
 
     @Override
@@ -37,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/webjars/**",
                         "/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/admin").hasRole("ADMIN")
+                //.antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

@@ -19,7 +19,22 @@ public class ProductImpl implements IProductService{
     }
 
     @Override
-    public Product getProdutById(String id) {
+    public Product getProductById(String id) {
         return productRepo.getOne(id);
+    }
+
+    @Override
+    public void createProduct(Product product) {
+        productRepo.save(product);
+    }
+
+    @Override
+    public void updateProduct(Product product) {
+        productRepo.save(product);
+    }
+
+    @Override
+    public void deleteProduct(String id) {
+        productRepo.deleteById(id);
     }
 }

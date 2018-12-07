@@ -1,10 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Admin</title>
+    <title>Se alle Produkter</title>
 </head>
 <body>
+<input type="text" id="myInput" onkeyup="myFunction()"
+       placeholder="Search for product.." title="Type in a name">
+<table id="myTable">
+    <thead>
+    <tr>
+        <td>Produktnavn</td>
+        <td>Pris</td>
+        <td>Beskrivelse</td>
+        <td>Inventar</td>
+    </tr>
+
+    </thead>
+    <tbody>
+    <tr th:each="product :${products}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.salesPrice}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.quantity}"></td>
+        <td><img th:src="${product.imagePath}" height="60"></td>
+        <td><a th:href="${'/admin/deleteProduct/' + product.id}">Delete</a></td>
+        <td><a th:href="${'/admin/updateProduct/' + product.id}">Update</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
 
 </body>
 </html>

@@ -19,7 +19,7 @@ public class Product {
     private int quantity;
     @Column(name = "barcode")
     private String barcode;
-    @Column(name = "desription")
+    @Column(name = "description")
     private String description;
     @Column(name = "image_path")
     private String imagePath;
