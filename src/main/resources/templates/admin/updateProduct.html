@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Opdatér produkt</title>
+</head>
+<body>
+<h1>Opdatér produkt</h1>
+
+<form action="/admin/updateProduct" method="post">
+    <input type="hidden" name="id" th:value="${product.id}">
+    <input type="text" name="name" th:value="${product.name}">
+    <input type="text" name="purchasePrice" th:value="${product.purchasePrice}">
+    <input type="text" name="salesPrice" th:value="${product.salesPrice}">
+    <input type="text" name="quantity" th:value="${product.quantity}">
+    <input type="hidden" name="barcode" th:value="${product.barcode}">
+    <input type="text" name="description" th:value="${product.description}">
+    <input type="text" name="imagePath" th:value="${product.imagePath}">
+    <input type="submit" name="Opdatér">
+</form>
+
+</body>
+</html>
