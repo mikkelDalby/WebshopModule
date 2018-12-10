@@ -25,6 +25,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers( "/admin/updateProduct");
         web.ignoring().antMatchers( "/admin/createProduct");
+        web.ignoring().antMatchers( "/admin/createDeliveryPost");
+        web.ignoring().antMatchers( "/admin/updateDeliveryPost");
+        web.ignoring().antMatchers( "/admin/createPaymentPost");
+        web.ignoring().antMatchers( "/admin/updatePaymentPost");
     }
 
     @Override
@@ -37,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/img/**",
                         "/webjars/**",
                         "/fragments/**",
-                        "/**").permitAll()
+                        "/*").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 //.antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()

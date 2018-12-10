@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Update delivery</title>
+    </head>
+    <body>
+        <div th:replace="fragments/adminheader :: adminheader"></div>
+        <h1>Update delivery</h1>
+        <form action="/admin/updateDeliveryPost" method="post">
+            <input type="hidden" name="id" th:value="${delivery.id}">
+            <label>Title:</label><input type="text" name="title" th:value="${delivery.title}">
+            <label>Description:</label><input type="text" name="description" th:value="${delivery.description}">
+            <label>Price:</label><input type="text" name="price" placeholder="10.5" th:value="${delivery.price}">
+            <input type="submit" value="Update">
+        </form>
+    </body>
+</html>

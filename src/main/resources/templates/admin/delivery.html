@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Delivery</title>
+</head>
+<body>
+<div th:replace="fragments/adminheader :: adminheader"></div>
+<a href="/admin/createDelivery">Create delivery</a>
+<table id="myTable">
+    <thead>
+    <tr>
+        <td>Title</td>
+        <td>Description</td>
+        <td>Price</td>
+    </tr>
+
+    </thead>
+    <tbody>
+    <tr th:each="delivery :${deliveries}">
+        <td th:text="${delivery.title}"></td>
+        <td th:text="${delivery.description}"></td>
+        <td th:text="${delivery.price}"></td>
+        <td><a th:href="${'/admin/updateDelivery/' + delivery.id}">Update</a></td>
+        <td><a th:href="${'/admin/deleteDelivery/' + delivery.id}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
