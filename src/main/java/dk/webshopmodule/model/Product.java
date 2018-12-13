@@ -24,6 +24,9 @@ public class Product {
     @Column(name = "image_path")
     private String imagePath;
 
+    @OneToMany(mappedBy = "product")
+    private List<OrderLine> orderLines;
+
     @ManyToMany
     @JoinTable(
             name = "pc",
@@ -34,7 +37,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String id, String name, Double purchasePrice, Double salesPrice, int quantity, String barcode, String description, String imagePath, List<Category> categories) {
+    public Product(String id, String name, Double purchasePrice, Double salesPrice, int quantity, String barcode, String description, String imagePath, List<OrderLine> orderLines, List<Category> categories) {
         this.id = id;
         this.name = name;
         this.purchasePrice = purchasePrice;
@@ -43,6 +46,7 @@ public class Product {
         this.barcode = barcode;
         this.description = description;
         this.imagePath = imagePath;
+        this.orderLines = orderLines;
         this.categories = categories;
     }
 
@@ -116,6 +120,14 @@ public class Product {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public List<OrderLine> getOrderLines() {
+        return orderLines;
+    }
+
+    public void setOrderLines(List<OrderLine> orderLines) {
+        this.orderLines = orderLines;
     }
 
     @Override

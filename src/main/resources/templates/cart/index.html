@@ -15,20 +15,20 @@
         <th>Total</th>
 
     </tr>
-        <tr th:each="item :${session.cart}">
-            <td th:text="${item.product.name}"></td>
-            <td>
-                <a th:href="${'/cart/sub/' + item.product.id}">-</a>
-                <span th:text="${item.quantity}"></span>
-                <a th:href="${'/cart/add/' + item.product.id}">+</a>
-            </td>
-            <td th:text="${item.product.salesPrice}"></td>
-            <td th:text="${item.product.salesPrice * item.quantity}"></td>
-            <td align="center">
-                <a th:href="${'/cart/remove/' + item.product.id}"
-                    onclick="return confirm('Are you sure?')">Remove</a>
-            </td>
-        </tr>
+    <tr th:each="item :${session.cart}">
+        <td th:text="${item.product.name}"></td>
+        <td>
+            <a th:href="${'/cart/sub/' + item.product.id}">-</a>
+            <span th:text="${item.quantity}"></span>
+            <a th:href="${'/cart/add/' + item.product.id}">+</a>
+        </td>
+        <td th:text="${item.product.salesPrice}"></td>
+        <td th:text="${item.product.salesPrice * item.quantity}"></td>
+        <td align="center">
+            <a th:href="${'/cart/remove/' + item.product.id}"
+               onclick="return confirm('Are you sure?')">Remove</a>
+        </td>
+    </tr>
     <tr>
         <td></td>
         <td></td>
@@ -37,5 +37,6 @@
         <td th:if="!${total}"></td>
     </tr>
 </table>
+<a href="/cart/buy">Gå til betaling</a>
 </body>
 </html>

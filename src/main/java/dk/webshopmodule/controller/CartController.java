@@ -2,12 +2,15 @@ package dk.webshopmodule.controller;
 
 import dk.webshopmodule.model.OrderLine;
 import dk.webshopmodule.model.Product;
+import dk.webshopmodule.service.IDeliveryService;
+import dk.webshopmodule.service.IPaymentService;
 import dk.webshopmodule.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -20,6 +23,12 @@ public class CartController {
 
     @Autowired
     IProductService productService;
+
+    @Autowired
+    IDeliveryService deliveryService;
+
+    @Autowired
+    IPaymentService paymentService;
 
     private List<Product> products;
 
@@ -113,6 +122,22 @@ public class CartController {
         cart.remove(index);
         session.setAttribute("cart", cart);
         return "redirect:/cart/";
+    }
+
+    @GetMapping("/buy")
+    public String buy(HttpSession session, Model model){
+        List<OrderLine> cart = (List<OrderLine>) session.getAttribute("cart");
+        double total = 0;
+        if (cart != null) {
+            for (OrderLine i : cart) {
+                total += i.getProduct().getSalesPrice() * i.getQuantity();
+            }
+            model.addAttribute("total", total);
+        }
+        model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("deliveries", deliveryService.fetchAllDelivery());
+        model.addAttribute("payments", paymentService.fetchAllPayments());
+        return "cart/buy";
     }
 
     private int exists(String id, List<OrderLine> cart) {

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Buy</title>
+    </head>
+    <body>
+        <div th:replace="fragments/header :: header"></div>
+        <h1>Afslut køb</h1>
+        <p>Produkter</p>
+        <table cellpadding="2" cellspacing="2">
+            <tr>
+                <th>Produkt</th>
+                <th>Antal</th>
+                <th>Pris/stk.</th>
+                <th>Total</th>
+
+            </tr>
+            <tr th:each="item :${session.cart}">
+                <td th:text="${item.product.name}"></td>
+                <td th:text="${item.quantity}"></td>
+                <td th:text="${item.product.salesPrice}"></td>
+                <td th:text="${item.product.salesPrice * item.quantity}"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Total</td>
+                <td th:if="${total}" th:text="${total}"></td>
+                <td th:if="!${total}"></td>
+            </tr>
+        </table>
+        <form action="/cart/finalizeOrder" method="post">
+            <h2>Kunde oplysninger</h2>
+            <label>Fornavn: </label><input type="text" name="firstName"><br>
+            <label>Efternavn: </label><input type="text" name="lastName"><br>
+            <label>Email: </label><input type="email" name="email"><br>
+            <label>Telefon: </label><input type="tel" name="phone"><br>
+            <label>Firma: </label><input type="text" name="company"><br>
+            <label>Adresse: </label><input type="text" name="iAdress"><br>
+            <label>Post nr.: </label><input type="text" name="iZipcode"><br>
+            <label>By: </label><input type="text" name="iTown"><br>
+            <label>Land: </label><input type="text" name="iCountry"><br>
+            <label>Leverings adresse er den samme: </label><input type="checkbox" name="same"><br>
+            <b>Leverings adresse: </b><br>
+            <label>Adresse: </label><input type="text" name="dAdress"><br>
+            <label>Post nr.: </label><input type="text" name="dZipcode"><br>
+            <label>By: </label><input type="text" name="dTown"><br>
+            <label>Land: </label><input type="text" name="dCountry">
+            <h3>Levering:</h3>
+            <span th:each="delivery : ${deliveries}">
+                <table>
+                    <tr>
+                        <td><input type="radio" name="delivery" th:value="${delivery.id}" required checked="checked"></td>
+                        <td th:text="${delivery.title}"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td th:text="${delivery.description}"></td>
+                    </tr>
+                </table>
+            </span>
+            <h4>Betaling:</h4>
+            <span th:each="payment : ${payments}">
+                <table>
+                    <tr>
+                        <td><input type="radio" name="payment" th:value="${payment.id}" required checked="checked"></td>
+                        <td th:text="${payment.title}"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td th:text="${payment.description}"></td>
+                    </tr>
+                </table>
+            </span>
+            <input type="submit" value="Videre">
+        </form>
+    </body>
+</html>

@@ -1,9 +1,7 @@
 package dk.webshopmodule.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "delivery")
@@ -21,14 +19,18 @@ public class Delivery {
     @Column(name = "price")
     private double price;
 
+    @OneToMany(mappedBy = "delivery")
+    private List<Order> orders;
+
     public Delivery() {
     }
 
-    public Delivery(int id, String title, String description, double price) {
+    public Delivery(int id, String title, String description, double price, List<Order> orders) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;
+        this.orders = orders;
     }
 
     public int getId() {
@@ -61,6 +63,14 @@ public class Delivery {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override
