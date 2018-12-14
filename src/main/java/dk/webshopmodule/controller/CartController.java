@@ -193,6 +193,7 @@ public class CartController {
         orderlineService.addOrderlines(cart);
 
         Mail mail = new Mail();
+        mail.sendNewOrderCustomer(customer.getEmail());
         mail.sendNewOrderAdmin();
 
         return "redirect:/cart/thanks/"+orderNumber;
