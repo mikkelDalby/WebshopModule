@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Gennemse ordre</title>
+    </head>
+    <body>
+        <div th:replace="fragments/header :: header"></div>
+        <h1>Gennemse ordre</h1>
+        <p>Produkter</p>
+        <table cellpadding="2" cellspacing="2">
+            <tr>
+                <th>Produkt</th>
+                <th>Antal</th>
+                <th>Pris/stk.</th>
+                <th>Total</th>
+
+            </tr>
+            <tr th:each="item :${session.cart}">
+                <td th:text="${item.product.name}"></td>
+                <td th:text="${item.quantity}"></td>
+                <td th:text="${item.product.salesPrice}"></td>
+                <td th:text="${item.product.salesPrice * item.quantity}"></td>
+            </tr>
+            <tr>
+                <th>Levering</th>
+                <th></th>
+                <th></th>
+                <th></th>
+
+            </tr>
+            <tr>
+                <td th:text="${delivery.title}"></td>
+                <td></td>
+                <td></td>
+                <td th:text="${delivery.price}"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Total</td>
+                <td th:if="${total}" th:text="${total}"></td>
+                <td th:if="!${total}"></td>
+            </tr>
+        </table>
+        <form action="/cart/confirmed" method="post">
+            <input type="hidden" name="firstName" th:value="${customer.firstName}">
+            <input type="hidden" name="lastName" th:value="${customer.lastName}">
+            <input type="hidden" name="email" th:value="${customer.email}">
+            <input type="hidden" name="phone" th:value="${customer.phone}">
+            <input type="hidden" name="company" th:value="${customer.company}">
+            <input type="hidden" name="iAdress" th:value="${customer.iAdress}">
+            <input type="hidden" name="iZipcode" th:value="${customer.iZipcode}">
+            <input type="hidden" name="iTown" th:value="${customer.iTown}">
+            <input type="hidden" name="iCountry" th:value="${customer.iCountry}">
+            <input type="hidden" name="dAdress" th:value="${customer.dAdress}">
+            <input type="hidden" name="dZipcode" th:value="${customer.dZipcode}">
+            <input type="hidden" name="dTown" th:value="${customer.dTown}">
+            <input type="hidden" name="dCountry" th:value="${customer.dCountry}">
+            <input type="hidden" name="delivery" th:value="${delivery.id}">
+            <input type="hidden" name="payment" th:value="${payment.id}">
+            <input type="hidden" name="total" th:value="${total}">
+            <input type="submit" value="køb">
+        </form>
+    </body>

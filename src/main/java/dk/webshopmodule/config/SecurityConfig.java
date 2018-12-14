@@ -29,6 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers( "/admin/updateDeliveryPost");
         web.ignoring().antMatchers( "/admin/createPaymentPost");
         web.ignoring().antMatchers( "/admin/updatePaymentPost");
+        web.ignoring().antMatchers( "/cart/finalizeOrder");
+        web.ignoring().antMatchers( "/cart/confirmed");
     }
 
     @Override

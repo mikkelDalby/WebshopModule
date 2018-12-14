@@ -11,6 +11,7 @@ import java.util.List;
 public class Order {
     @Id
     @Column(name = "o_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
@@ -29,7 +30,7 @@ public class Order {
     private Date dateTime;
 
     @ManyToOne
-    @JoinColumn(name = "s_id")
+    @JoinColumn(name = "s_fk")
     private Status status;
 
     @ManyToOne
@@ -40,6 +41,16 @@ public class Order {
     private List<OrderLine> orderLines;
 
     public Order() {
+    }
+
+    public Order(Delivery delivery, Customer customer, double totalPrice, Date dateTime, Status status, Payment payment, List<OrderLine> orderLines) {
+        this.delivery = delivery;
+        this.customer = customer;
+        this.totalPrice = totalPrice;
+        this.dateTime = dateTime;
+        this.status = status;
+        this.payment = payment;
+        this.orderLines = orderLines;
     }
 
     public Order(int id, Delivery delivery, Customer customer, double totalPrice, Date dateTime, Status status, Payment payment, List<OrderLine> orderLines) {

@@ -19,6 +19,10 @@ public class Status {
     public Status() {
     }
 
+    public Status(int id) {
+        this.id = id;
+    }
+
     public Status(int id, String status, List<Order> orders) {
         this.id = id;
         this.status = status;

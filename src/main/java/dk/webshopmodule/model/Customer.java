@@ -8,6 +8,7 @@ import java.util.List;
 public class Customer {
     @Id
     @Column(name = "c_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "first_name")
